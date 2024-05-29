@@ -29,4 +29,9 @@ let playRound = (humanChoice, computerChoice) => {
     console.log("Scores:\nHuman: " + humanScore + "\nComputer: " + computerScore);
 }
 
-playRound(getHumanChoice(), getComputerChoice());
+let playGame = rounds => {
+    for (let i = 0;i < rounds;i++)
+        playRound(getHumanChoice(), getComputerChoice());
+}
+
+playGame(5);
