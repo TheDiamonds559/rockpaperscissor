@@ -7,11 +7,15 @@ let getHumanChoice = () => options[parseInt(prompt("0: rock, 1: paper, 2: scisso
 let humanScore = computerScore = 0;
 
 let playRound = (humanChoice, computerChoice) => {
-    console.log("Computer: " + computerChoice);
-    console.log("human: " + humanChoice);
+    if (humanScore >= 5 || computerScore >= 5){
+        alert(humanScore > computerScore ? 'human wins!' : 'computer wins!');
+        return;
+    }
+    document.querySelector('.computer').textContent= ("Computer: " + computerChoice);
+    document.querySelector('.human').textContent = ("human: " + humanChoice);
     if (humanChoice == computerChoice)
         {
-        console.log("Draw!");
+        document.querySelector('.output').textContent = "Draw.";
         }
     else if (
         (humanChoice == 'rock' && computerChoice == 'paper')     || 
@@ -19,19 +23,13 @@ let playRound = (humanChoice, computerChoice) => {
         (humanChoice == 'scissors' && computerChoice == 'rock')
        )
        {
-        console.log("Lose!");
+        document.querySelector('.output').textContent = "Lose!";
         computerScore++;
        }
     else {
-        console.log("Win!");
+        document.querySelector('.output').textContent = "Win!";
         humanScore++;
     }
-    console.log("Scores:\nHuman: " + humanScore + "\nComputer: " + computerScore);
+    document.querySelector('.score').textContent = ("Scores:\nHuman: " + humanScore + "\nComputer: " + computerScore);
 }
 
-let playGame = rounds => {
-    for (let i = 0;i < rounds;i++)
-        playRound(getHumanChoice(), getComputerChoice());
-}
-
-playGame(5);
